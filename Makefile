@@ -1,6 +1,6 @@
-CONTEXT = microsoft
+CONTEXT = gpaterno
 VERSION = v14.0
-IMAGE_NAME = mssql-server-linux
+IMAGE_NAME = mssql-server-ssis
 TARGET = centos7
 REGISTRY = docker-registry.default.svc.cluster.local
 OC_USER = developer
