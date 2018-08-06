@@ -30,9 +30,12 @@ RUN curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/co
 COPY uid_entrypoint /opt/mssql-tools/bin/
 ENV PATH=${PATH}:/opt/mssql/bin:/opt/mssql-tools/bin
 RUN mkdir -p /var/opt/mssql/data && \
-    chmod -R g=u /var/opt/mssql /etc/passwd
+    mkdir -p /var/opt/ssis/packages/ && \
+    chmod -R g=u /var/opt/mssql /var/opt/ssis/packages/ /etc/passwd
 
 ## Setup ssis
+## It is envisaged to copy the SSIS packages in /var/opt/ssis/packages 
+## and mount accordingly
 ENV ACCEPT_EULA=Y
 RUN /opt/ssis/bin/ssis-conf -n set-edition ; /opt/ssis/bin/ssis-conf -n setup ; exit 0
 
